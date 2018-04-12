@@ -1,3 +1,4 @@
+import { BooksService } from './books/books.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private booksService: BooksService) { }
+
+  ngOnInit() {
+    this.booksService.getBooks()
+      .subscribe(data => console.log(data));
+  }
 }
