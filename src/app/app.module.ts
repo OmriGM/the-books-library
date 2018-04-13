@@ -8,6 +8,7 @@ import {BooksListComponent} from "./books/books-list/books-list.component";
 import {NonEnglishPipePipe} from "./shared/non-english-pipe.pipe";
 import {EditBookComponent} from "./books/edit-book.component";
 import {FormsModule} from "@angular/forms";
+import {DeleteBookPopupComponent} from "./books/delete-book-popup/delete-book-popup.component";
 
 
 @NgModule({
@@ -16,8 +17,12 @@ import {FormsModule} from "@angular/forms";
     BooksListComponent,
     NonEnglishPipePipe,
     EditBookComponent,
+    DeleteBookPopupComponent
   ],
-  entryComponents:[EditBookComponent],
+  entryComponents: [
+    EditBookComponent,
+    DeleteBookPopupComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

@@ -4,6 +4,7 @@ import {BooksService} from "./books.service";
 import {Subscription} from "rxjs/Subscription";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {EditBookComponent} from "../edit-book.component";
+import {DeleteBookPopupComponent} from "../delete-book-popup/delete-book-popup.component";
 
 @Component({
   selector: 'app-books-list',
@@ -42,11 +43,14 @@ export class BooksListComponent implements OnInit, OnDestroy {
     } else {
       console.log(this.TAG, "opens modal for new book");
     }
-    // this.modalRef.result.then(data=>console.log(data));
   }
 
   onDeleteBook(i): void {
-    this.bookService.deleteBook(i);
+    this.modalService.open(DeleteBookPopupComponent,{size:"sm"})
+      .result.then((shouldDelte)=>{
+      if(shouldDelte)
+        this.bookService.deleteBook(i);
+    });
   }
 
   onUpdateBook(i): void {
