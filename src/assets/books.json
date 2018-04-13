@@ -1,0 +1,37 @@
+[
+  {
+    "author": "Scott Fitzgerald",
+    "date": "18-54-2016",
+    "title": "The Great Gatsby"
+  },
+  {
+    "author": "John Steinbeck",
+    "date": "20-28-2016",
+    "title": "The Grapes of Wrath"
+  },
+  {
+    "author": "George Orwell",
+    "date": "30-50-2014",
+    "title": "Nineteen Eighty-Four"
+  },
+  {
+    "author": "James Joyce",
+    "date": "14-45-2015",
+    "title": "Ulysses"
+  },
+  {
+    "author": "Vladimir Nabokov",
+    "date": "12-44-2014",
+    "title": "Lolita"
+  },
+  {
+    "author": "Salinger",
+    "date": "01-04-2014",
+    "title": "The Catcher in the Rye"
+  },
+  {
+    "author": "William Faulkner",
+    "date": "01-04-2014",
+    "title": "@@@the sound and the Fury%%@@%%s"
+  }
+]

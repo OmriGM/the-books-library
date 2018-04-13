@@ -1,0 +1,40 @@
+  <div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table">
+          <div class="row header">
+            <div class="cell">
+              Author
+            </div>
+            <div class="cell">
+              Release Date
+            </div>
+            <div class="cell">
+              Title
+            </div>
+            <div class="cell">
+              Action
+            </div>
+          </div>
+          <div class="row" *ngFor="let book of books;let i= index;">
+            <div class="cell" data-title="Full Name">
+              {{book.author}}
+            </div>
+            <div class="cell" data-title="Age">
+              {{book.date}}
+            </div>
+            <div class="cell" data-title="Job Title">
+              {{book.title|nonEnglish|titlecase}}
+            </div>
+            <div class="cell" data-title="Location">
+              <button class="btn btn-outline-primary edit-button" (click)="openModal(i,book)">Edit</button>
+              <strong>/</strong>
+              <button class="btn btn-outline-danger delete-button" (click)="onDeleteBook(i)">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success" (click)="openModal()">Add Book</button>
+  </div>
+
