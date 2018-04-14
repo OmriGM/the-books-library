@@ -2,9 +2,10 @@ import {Book} from './book.model';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BooksService} from "./books.service";
 import {Subscription} from "rxjs/Subscription";
-import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EditBookComponent} from "../edit-book.component";
 import {DeleteBookPopupComponent} from "../delete-book-popup/delete-book-popup.component";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 
 @Component({
   selector: 'app-books-list',
@@ -21,7 +22,7 @@ export class BooksListComponent implements OnInit, OnDestroy {
 
   constructor(private bookService: BooksService,
               private modalService: NgbModal,
-            ) {
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -36,21 +37,33 @@ export class BooksListComponent implements OnInit, OnDestroy {
       );
   }
 
-  openModal(i?: number, book?: Book) {
+  onDeleteBook(i): void {
+    this.modalService.open(DeleteBookPopupComponent, {size: "sm"})
+      .result.then((shouldDelete) => {
+      if (shouldDelete) {
+        this.openSnackBar("The book of " + this.books[i].author + " has been deleted!");
+        this.bookService.deleteBook(i);
+      }
+    });
+  }
+
+  openBookModal(i?: number, book?: Book) {
     if (i >= 0) {
-      console.log(this.TAG, "opens modal for edit", book);
-      this.modalService.open(EditBookComponent).result.then(data=>console.log(data));
+      this.bookService.setEditBook(i);
+      this.modalService.open(EditBookComponent).result
+        .then(data => console.log(data));
     } else {
-      console.log(this.TAG, "opens modal for new book");
+      this.modalService.open(EditBookComponent).result
+        .then((data: Book) => {
+          this.openSnackBar("The book '" + data.title + "' has been added!")
+        });
     }
   }
 
-  onDeleteBook(i): void {
-    this.modalService.open(DeleteBookPopupComponent,{size:"sm"})
-      .result.then((shouldDelte)=>{
-      if(shouldDelte)
-        this.bookService.deleteBook(i);
-    });
+  openSnackBar(msg: string) {
+    let config = new MatSnackBarConfig();
+    config.duration = 3000;
+    this.snackBar.open(msg, " ", config);
   }
 
   onUpdateBook(i): void {
@@ -59,7 +72,7 @@ export class BooksListComponent implements OnInit, OnDestroy {
   }
 
   onAddBook(book: Book): void {
-    this.bookService.addBook(book);
+    this.openBookModal();
   }
 
   ngOnDestroy() {

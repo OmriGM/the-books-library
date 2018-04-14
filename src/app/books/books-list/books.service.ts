@@ -8,10 +8,11 @@ import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class BooksService {
-  apiUrl:string='../assets/books.json';
+  apiUrl: string = '../assets/books.json';
   TAG: string = "[Books Service]: ";
   books: Book[] = [];
   booksChanged: Subject<Book[]> = new Subject<Book[]>();
+  editedBookIndex: number;
 
   constructor(private http: HttpClient) {
   }
@@ -22,7 +23,6 @@ export class BooksService {
    * @returns {Observable<Book[]>}
    */
   getBooks(): Observable<Book[]> {
-    console.log(this.TAG);
     return this.http.get(this.apiUrl)
       .map(data => {
         return this.books = plainToClass(Book, data as Object[]);
@@ -40,9 +40,17 @@ export class BooksService {
   }
 
   deleteBook(index: number): void {
-    if(this.books.length){
+    if (this.books.length) {
       this.books.splice(index, 1);
       this.booksChanged.next(this.books.slice());
     }
+  }
+
+  setEditBook(index: number) {
+    this.editedBookIndex=index;
+  }
+
+  getEditBook(){
+    return this.books[this.editedBookIndex];
   }
 }

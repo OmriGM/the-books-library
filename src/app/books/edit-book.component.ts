@@ -1,6 +1,8 @@
-import {Component} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {BooksService} from "./books-list/books.service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Book} from "./books-list/book.model";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-book',
@@ -8,12 +10,23 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./edit-book.component.css']
 })
 
-export class EditBookComponent{
+export class EditBookComponent implements OnInit {
+  book: Book;
+  @ViewChild('f') form:NgForm;
 
-  constructor(private bookService: BooksService,private activeModalService:NgbActiveModal) {
+  constructor(private bookService: BooksService,
+              private activeModalService: NgbActiveModal) {
+  }
+
+  ngOnInit() {
+    this.book = this.bookService.getEditBook();
+    this.form.setValue({title:this.book.title})
   }
 
   onSubmit(form) {
-    this.activeModalService.close("Yes");
+    const formValue = form.value;
+    this.book = new Book(formValue.author, formValue.date, formValue.title);
+    this.bookService.addBook(this.book);
+    this.activeModalService.close(this.book);
   }
 }

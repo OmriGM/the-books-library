@@ -5,10 +5,13 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent} from './app.component';
 import {BooksListComponent} from "./books/books-list/books-list.component";
-import {NonEnglishPipePipe} from "./shared/non-english-pipe.pipe";
+import {NonEnglishPipePipe} from "./shared/pipes/non-english-pipe.pipe";
 import {EditBookComponent} from "./books/edit-book.component";
 import {FormsModule} from "@angular/forms";
 import {DeleteBookPopupComponent} from "./books/delete-book-popup/delete-book-popup.component";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import {DeleteBookPopupComponent} from "./books/delete-book-popup/delete-book-po
   ],
   imports: [
     BrowserModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot()

@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body, html {
   height: 100%;
   font-family: sans-serif;
   background-color: #c4d3f6;
+}
+
+@font-face {
+  font-family: Poppins-Regular;
+  src: url('/../assets/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url('/../assets/fonts/Poppins-Bold.ttf');
 }
