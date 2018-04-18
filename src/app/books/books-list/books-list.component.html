@@ -27,16 +27,16 @@
             </div>
           </div>
           <div class="row" *ngFor="let book of books;let i= index;">
-            <div class="cell" data-title="Full Name">
+            <div class="cell" data-title="Author">
               {{book.author}}
             </div>
-            <div class="cell" data-title="Age">
+            <div class="cell" data-title="Date">
               {{book.date}}
             </div>
-            <div class="cell" data-title="Job Title">
+            <div class="cell" data-title="Title">
               {{book.title|nonEnglish|titlecase}}
             </div>
-            <div class="cell" data-title="Location">
+            <div class="cell" data-title="Action">
               <button class="btn btn-outline-primary edit-button" (click)="onEditBook(i,book)">Edit</button>
               <strong>/</strong>
               <button class="btn btn-outline-danger delete-button" (click)="onDeleteBook(i)">X</button>
