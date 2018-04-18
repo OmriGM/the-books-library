@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
-import {BooksService} from "./books-list/books.service";
-import {Book} from "./books-list/book.model";
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {BooksService} from "../books.service";
+import {Book} from "../book.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs/Subscription";
-import {PopupService} from "../shared/popup-service.service";
+import {PopupService} from "../../shared/popup-service.service";
 
 @Component({
   selector: 'app-edit-book',

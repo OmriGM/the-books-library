@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {BooksService} from "../books-list/books.service";
+import {BooksService} from "../books.service";
 
 @Component({
   selector: 'app-delete-book-popup',

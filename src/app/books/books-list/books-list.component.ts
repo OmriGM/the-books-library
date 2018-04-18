@@ -1,6 +1,6 @@
-import {Book} from './book.model';
+import {Book} from '../book.model';
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {BooksService} from "./books.service";
+import {BooksService} from "../books.service";
 import {Subscription} from "rxjs/Subscription";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 import {Popup} from "ng2-opd-popup";
