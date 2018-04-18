@@ -8,7 +8,7 @@ import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class BooksService {
-  apiUrl: string = '../assets/books.json';
+  apiUrl: string = 'assets/books.json';
   books: Book[] = [];
   booksChanged: Subject<Book[]> = new Subject<Book[]>();
   duplicateChanged: Subject<string> = new Subject<string>();
