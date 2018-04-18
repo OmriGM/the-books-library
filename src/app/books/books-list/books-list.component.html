@@ -1,3 +1,13 @@
+<popup #deletePopup (confirmClick)="confirmDeleteBook()">
+  <app-delete-book-popup></app-delete-book-popup>
+</popup>
+<popup #editPopup>
+  <app-edit-book ></app-edit-book>
+</popup>
+<popup #duplicatePopup (confirmClick)="confirmDuplicate()">
+  Can't add book, the book title already exists!
+</popup>
+
   <div class="limiter">
     <div class="container-table100">
       <div class="wrap-table100">
@@ -27,14 +37,14 @@
               {{book.title|nonEnglish|titlecase}}
             </div>
             <div class="cell" data-title="Location">
-              <button class="btn btn-outline-primary edit-button" (click)="openBookModal(i,book)">Edit</button>
+              <button class="btn btn-outline-primary edit-button" (click)="onEditBook(i,book)">Edit</button>
               <strong>/</strong>
               <button class="btn btn-outline-danger delete-button" (click)="onDeleteBook(i)">X</button>
             </div>
           </div>
         </div>
+        <button class="btn btn-success custom-button" (click)="onAddBook()">Add a New Book</button>
       </div>
     </div>
-    <button class="btn btn-success" (click)="onAddBook()">Add Book</button>
   </div>
 

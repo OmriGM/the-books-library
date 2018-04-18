@@ -5,7 +5,7 @@ export class Book {
 
   constructor(author: string, date: Date, title: string) {
     this.author = author;
-    this.date = date;
+    this.date=date;
     this.title = title;
   }
 }

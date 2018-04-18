@@ -1,5 +1,5 @@
 import {Book} from './book.model';
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs/Observable";
 import {plainToClass} from "class-transformer";
@@ -9,19 +9,16 @@ import {Subject} from "rxjs/Subject";
 @Injectable()
 export class BooksService {
   apiUrl: string = '../assets/books.json';
-  TAG: string = "[Books Service]: ";
   books: Book[] = [];
   booksChanged: Subject<Book[]> = new Subject<Book[]>();
+  duplicateChanged: Subject<string> = new Subject<string>();
+  editedBookChanged: Subject<Book> = new Subject<Book>();
+  addBookSuccess: EventEmitter<string> = new EventEmitter<string>();
   editedBookIndex: number;
 
   constructor(private http: HttpClient) {
   }
 
-  /**
-   * returns the book list from the server
-   *
-   * @returns {Observable<Book[]>}
-   */
   getBooks(): Observable<Book[]> {
     return this.http.get(this.apiUrl)
       .map(data => {
@@ -30,13 +27,19 @@ export class BooksService {
   }
 
   addBook(book: Book): void {
-    this.books.push(book);
-    this.booksChanged.next(this.books.slice());
+    if (book && !(this.checkForBookTitleDuplication(book))) {
+      this.books.push(book);
+      this.booksChanged.next(this.books.slice());
+      this.addBookSuccess.emit(book.author);
+    }
   }
 
   updateBook(index: number, book: Book): void {
-    this.books[index] = book;
-    this.booksChanged.next(this.books.slice());
+    if ((index >= 0) && book && !(this.checkForBookTitleDuplication(book))) {
+      this.books[index] = book;
+      this.booksChanged.next(this.books.slice());
+      this.addBookSuccess.emit(book.author);
+    }
   }
 
   deleteBook(index: number): void {
@@ -46,11 +49,20 @@ export class BooksService {
     }
   }
 
-  setEditBook(index: number) {
-    this.editedBookIndex=index;
+  getEditBookIndex(): number {
+    return this.editedBookIndex;
   }
 
-  getEditBook(){
-    return this.books[this.editedBookIndex];
+  setEditBookIndex(index: number): void {
+    this.editedBookIndex = index;
+  }
+
+  checkForBookTitleDuplication(editBook: Book): boolean {
+    for (let book of this.books) {
+      if (book.title == editBook.title && book != editBook) {
+        this.duplicateChanged.next('Book title already exists');
+        return true;
+      }
+    }
   }
 }

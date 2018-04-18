@@ -1,3 +1,20 @@
 .form{
   padding:40px;
 }
+
+.book-form-wrapper{
+  padding-left: 72px;
+}
+
+.error {
+  border:2px solid #ff757c;
+}
+
+.error-msg{
+  display: block;
+  position: absolute;
+  font-size: 75%;
+  bottom: -2em;
+  color: red;
+  padding-bottom: 5px;
+}

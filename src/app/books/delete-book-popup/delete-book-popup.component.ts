@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {BooksService} from "../books-list/books.service";
 
 @Component({
   selector: 'app-delete-book-popup',
@@ -9,10 +10,8 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 export class DeleteBookPopupComponent {
 
-  constructor(private activeModalService: NgbActiveModal) {
+  constructor(private bookSerivce: BooksService) {
   }
 
-  onDelete(shouldDelete: boolean) {
-    this.activeModalService.close(shouldDelete);
-  }
+
 }

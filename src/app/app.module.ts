@@ -2,17 +2,16 @@ import {HttpClientModule} from '@angular/common/http';
 import {BooksService} from './books/books-list/books.service';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent} from './app.component';
 import {BooksListComponent} from "./books/books-list/books-list.component";
 import {NonEnglishPipePipe} from "./shared/pipes/non-english-pipe.pipe";
 import {EditBookComponent} from "./books/edit-book.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DeleteBookPopupComponent} from "./books/delete-book-popup/delete-book-popup.component";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
-
+import {PopupModule} from "ng2-opd-popup";
+import {PopupService} from "./shared/popup-service.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +19,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BooksListComponent,
     NonEnglishPipePipe,
     EditBookComponent,
-    DeleteBookPopupComponent
+    DeleteBookPopupComponent,
   ],
   entryComponents: [
     EditBookComponent,
@@ -32,10 +31,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    NgbModule.forRoot()
+    ReactiveFormsModule,
+    PopupModule.forRoot()
   ],
   providers: [
-    BooksService
+    BooksService,
+    PopupService
   ],
   bootstrap: [AppComponent]
 })

@@ -15,7 +15,13 @@
   background-color: lightblue;
 }
 
-
+.custom-button{
+  margin-top: 20px;
+  background-color: #1b8ae8;
+  border-radius: 20px;
+  width: 241px;
+  height: 45px;
+}
 
 * {
   margin: 0px;
@@ -67,7 +73,7 @@ textarea:focus, input:focus {
 
 /* ------------------------------------ */
 button {
-  outline: none !important;
+  outline: none;
   border: none;
   background: transparent;
 }
@@ -77,7 +83,7 @@ button:hover {
 }
 
 iframe {
-  border: none !important;
+  border: none;
 }
 
 /* ------------------------------------ */
