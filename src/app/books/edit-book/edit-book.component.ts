@@ -33,16 +33,16 @@ export class EditBookComponent implements OnInit, OnDestroy {
 
   initForm(): void {
     let bookAuthor: string = "";
-    let bookDate: Date = null;
+    let bookDate: Date = new Date();
     let bookTitle: string = "";
     if (this.editMode) {
       bookAuthor = this.book.author;
-      bookDate = this.book.date;
+      bookDate = new Date(this.book.date);
       bookTitle = this.book.title;
     }
     this.bookForm = new FormGroup({
       'author': new FormControl(bookAuthor, Validators.required),
-      'date': new FormControl(bookDate, [
+      'date': new FormControl(bookDate.toISOString().substring(0,10), [
         Validators.required,
         /**
          * Date validator checks:

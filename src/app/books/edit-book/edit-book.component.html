@@ -12,7 +12,8 @@
                    id="author"
                    formControlName="author">
           </div>
-          <p class="error-msg" *ngIf="bookForm.controls['author'].errors && !bookForm.controls['author'].pristine">Author is required!</p>
+          <p class="error-msg" *ngIf="bookForm.controls['author'].errors && !bookForm.controls['author'].pristine">
+            Author is required!</p>
         </div>
       </div>
       <div class="row">
@@ -23,9 +24,11 @@
                    type="date"
                    class="form-control"
                    id="date"
-                   formControlName="date">
+                   formControlName="date"
+            >
           </div>
-          <p class="error-msg" *ngIf="bookForm.controls['date'].errors && !bookForm.controls['date'].pristine">Date is not valid!</p>
+          <p class="error-msg" *ngIf="bookForm.controls['date'].errors && !bookForm.controls['date'].pristine">Date is
+            not valid!</p>
         </div>
       </div>
       <div class="row">
@@ -38,7 +41,8 @@
                    id="title"
                    formControlName="title">
           </div>
-          <p class="error-msg" *ngIf="bookForm.controls['title'].errors && !bookForm.controls['title'].pristine">Title is required!</p>
+          <p class="error-msg" *ngIf="bookForm.controls['title'].errors && !bookForm.controls['title'].pristine">Title
+            is required!</p>
         </div>
       </div>
       <button
