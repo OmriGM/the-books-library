@@ -23,6 +23,10 @@ export class EditBookComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
+    this.getEditBookListener();
+  }
+
+  getEditBookListener(): void{
     this.editBookSub = this.bookService.editedBookChanged
       .subscribe((book: Book) => {
         this.editMode = true;
@@ -38,6 +42,7 @@ export class EditBookComponent implements OnInit, OnDestroy {
     if (this.editMode) {
       bookAuthor = this.book.author;
       bookDate = new Date(this.book.date);
+      console.log(bookDate);
       bookTitle = this.book.title;
     }
     this.bookForm = new FormGroup({

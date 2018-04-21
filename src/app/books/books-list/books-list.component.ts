@@ -29,6 +29,11 @@ export class BooksListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.getBooks();
+    this.duplicateListener();
+  }
+
+  getBooks(): void {
     this.booksSub = this.bookService.getBooks()
       .subscribe((books: Book[]) => {
           this.books = books;
@@ -38,13 +43,15 @@ export class BooksListComponent implements OnInit, OnDestroy {
             });
         }
       );
+  }
+
+  duplicateListener(): void {
     this.duplicatePopupSub = this.bookService.duplicateChanged
       .subscribe((msg) => {
         if (msg) {
           this.duplicatePopup.show(this.popupService.initDuplicatePopupOptions());
         }
-      })
-
+      });
   }
 
   confirmDuplicate() {
@@ -78,7 +85,7 @@ export class BooksListComponent implements OnInit, OnDestroy {
     this.addBookSuccessSnackBar();
   }
 
-  addBookSuccessSnackBar():void{
+  addBookSuccessSnackBar(): void {
     this.bookService.addBookSuccess
       .subscribe(
         title => this.openSnackBar("The book of " + title + " has been added!")
