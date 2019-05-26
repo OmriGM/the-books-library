@@ -1,14 +1,10 @@
 # The Books Library
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
-
-## Installation
-Run `npm install`
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is a simple exmaple for a book library with a neat design.
+You can add new book records, edit them, or remove any book record by your choise!
 
 ## Live Demo 
 
 Go to: http://bookstore.getforge.io/
+
+## Installation
+Run `npm install`
